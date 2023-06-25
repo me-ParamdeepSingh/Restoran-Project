@@ -109,4 +109,8 @@ def additional(request):
     return render(request,'additional.html')
 
 def extra(request):
-    return render(request,'extra.html')
+    queryset = Menu.objects.all()
+    context = {'menu_items': queryset}
+    
+    return render(request,'extra.html', context)
+

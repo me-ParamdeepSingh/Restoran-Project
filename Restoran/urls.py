@@ -31,8 +31,6 @@ urlpatterns = [
     path('testimonial/', testimonial, name='testimonial'),
     path('login/', login_page, name='login_page'),
     
-    path('register/', register, name='register'),
-    # path('register/', register, name='register'),
     
     path('register/', register, name='register'),
     path('login/', login_page, name='login_page'),
@@ -42,4 +40,5 @@ urlpatterns = [
     path('edit_booking/', edit_booking, name='edit_booking'),
     path('additional/', additional, name='additional'),
     path('extra/', extra, name='extra'),
+    path('otp/', otp_verify,  name='otp'),
 ]

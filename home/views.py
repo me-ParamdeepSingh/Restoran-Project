@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .utils import *
 from django.contrib.auth.decorators import login_required
-
+from .models import *
 
 
 # Create your views here.
@@ -57,12 +57,33 @@ def register(req):
         
         messages.info(req, 'Email Sent, Please verify your email address')
         
-        return redirect("/register/")
+        return redirect("/otp?username="+username)
 
     return render(req, 'register.html')
 
     # return render(request,'register.html')
 
+def otp_verify(req): 
+    if req.method == 'POST':
+        user = req.POST.get('user')
+        input_otp = req.POST.get('otp')
+        queryset = otp.objects.get(user = user)
+        
+        original_otp = queryset.otp_no
+        print(original_otp)
+        if input_otp != original_otp:
+            messages.error(req, 'Otp incorrect')
+            return redirect('/otp?username='+user)
+        
+        queryset2 = User.objects.get(username = user)
+        queryset2.is_active = True
+        queryset2.save()
+        queryset.delete()
+        messages.success(req, 'Resgistration successful')
+        return redirect('/login/')
+
+    username = req.GET.get('username')
+    return render(req, 'otp.html',{'username':username})
 
 
 def login_page(req):
@@ -70,6 +91,12 @@ def login_page(req):
     if req.method == 'POST':
         username = req.POST.get('username')
         password = req.POST.get('password')
+
+        queryset = User.objects.get(username = username)
+
+        if queryset.is_active != True:
+            messages.error(req, '<a href="/otp?username='+ username + '>Please verify</a>', extra_tags='safe')
+            return redirect('/login')
 
         if not User.objects.filter(username = username).exists():
             messages.info(req, 'Invalid username')

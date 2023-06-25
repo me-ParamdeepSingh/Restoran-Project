@@ -18,8 +18,8 @@
                     
                     {% if messages %}
                     <h4 class="text-center text-danger ">
-                        {% for a in messages %}
-                        {{a}}
+                        {% for message in messages %}
+                        {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
                         {% endfor %}
             
                     </h4>

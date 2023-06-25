@@ -13,12 +13,11 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center text-uppercase">
                 <li class="breadcrumb-item"><a class="text-danger text-decoration-none" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-danger text-decoration-none" href="#">Pages</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">Profile</li>
             </ol>
         </nav>
-    </div>    
-</div>    
+    </div>
+</div>
 </div>
 <!-- Navbar & Hero End -->
 
@@ -26,33 +25,46 @@
     <h4 class="section-title ff-secondary text-center text-danger fw-normal">User Profile </h4>
     <div class="row my-3 p-5 pb-3 w-50 m-auto bg_clr text-white rounded-top-5">
         <div class="col-4 m-auto">
-            <div class="rounded"><img class="w-100 rounded-circle" src="{% static 'img/profile.png'%}" alt=""></div>
-            <div class="h4 fw-bolder mt-2 text-danger">DJ8</div>
+            <div class="rounded"><img class="w-75 rounded-circle" src="{% static 'img/profile.png'%}" alt=""></div>
+            <div class="h4 fw-bolder mt-2 text-danger">{{request.user.username}}</div>
         </div>
         <div class="col-8 text-start">
             <div class="row  gy-3">
-                <div class="col-4 text-danger">Name</div>
-                <div class="col-8">Deepanshu Joshi</div>
-    
-                <div class="col-4 text-danger">User Name</div>
-                <div class="col-8">DJ8</div>
-    
-                <div class="col-4 text-danger">Phone Number</div>
-                <div class="col-8">+12 3456 7890</div>
-    
-                <div class="col-4 text-danger">Email Id</div>
-                <div class="col-8">abc123@xyz.com</div>
-    
-                <div class="col-4 text-danger">Address</div>
-                <div class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad temporibus libero iure.
-                </div>
-    
+                <!-- Full Name -->
+                <div class="col-4 text-danger">Name :</div>
+                <div class="col-8">{{request.user.first_name}} {{request.user.last_name}}</div>
+
+                <!-- Username -->
+                <div class="col-4 text-danger">User Name :</div>
+                <div class="col-8">{{request.user}}</div>
+
+                <!-- Phone Number -->
+                <div class="col-4 text-danger">Phone Number :</div>
+                {% if request.user.number != NoneType %}
+                <div class="col-8">{{request.user.number}}</div>
+                {% else %}
+                <div class="col-8">--------------</div>
+                {% endif %}
+
+                <!-- email -->
+                <div class="col-4 text-danger">Email Id :</div>
+                <div class="col-8">{{request.user.email}}</div>
+
+                <!-- Address -->
+                <div class="col-4 text-danger">Address :</div>
+                {% if request.user.address != NoneType %}
+                <div class="col-8">{{request.user.address}}</div>
+                {% else %}
+                <div class="col-8">--------------</div>
+                {% endif %}
+
+
             </div>
         </div>
-        <a class="btn btn-danger mt-4 w-50 m-auto " href="/update_profile/">Edit Profile</a>
+        <a class="btn btn-danger mt-4 w-50 m-auto " href="/update_profile/">Update Profile</a>
     </div>
-    
-<br>
+
+    <br>
     <h4 class="section-title ff-secondary text-center text-danger fw-normal">Bookings </h4>
     <div class=" fw-bold h2">Upcoming Bookings</div>
 
@@ -76,8 +88,8 @@
                 <div class="col-6 ps-3 text-start mb-2">None</div>
                 <div class="col-6 text-end"><a class=" btn btn-danger" href="/edit_booking/">Update</a></div>
                 <div class="col-6 text-start"><a class=" btn bg_clr text-light" href="">Delete</a></div>
-            </div>    
-        </div>    
+            </div>
+        </div>
 
         <div class="col-4">
             <div class="shadow-lg  rounded-4 row p-3 ">
@@ -98,15 +110,15 @@
                 <div class="col-6 ps-3 text-start mb-2">None</div>
                 <div class="col-6 text-end"><a class=" btn btn-danger" href="/edit_booking/">Update</a></div>
                 <div class="col-6 text-start"><a class=" btn bg_clr text-light" href="">Delete</a></div>
-            </div>    
-        </div>    
-
-        
-
-        
+            </div>
+        </div>
 
 
-    </div>    
+
+
+
+
+    </div>
 
     <!-- name       no of persons        mobile         email           date        time        special req-->
 
@@ -132,9 +144,9 @@
                 <div class="col-6 ps-3 text-start">19:00</div>
                 <div class="col-6 fw-bold text-danger text-end">Special request:</div>
                 <div class="col-6 ps-3 text-start mb-2">None</div>
-            </div>    
-        </div>    
-        
+            </div>
+        </div>
+
         <div class="col-4">
             <div class="shadow-lg  rounded-4 row p-3 ">
                 <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
@@ -153,9 +165,9 @@
                 <div class="col-6 ps-3 text-start">19:00</div>
                 <div class="col-6 fw-bold text-danger text-end">Special request:</div>
                 <div class="col-6 ps-3 text-start mb-2">None</div>
-            </div>    
-        </div>    
-        
+            </div>
+        </div>
+
         <div class="col-4">
             <div class="shadow-lg  rounded-4 row p-3 ">
                 <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
@@ -174,9 +186,9 @@
                 <div class="col-6 ps-3 text-start">19:00</div>
                 <div class="col-6 fw-bold text-danger text-end">Special request:</div>
                 <div class="col-6 ps-3 text-start mb-2">None</div>
-            </div>    
-        </div>    
-        
+            </div>
+        </div>
+
         <div class="col-4">
             <div class="shadow-lg  rounded-4 row p-3 ">
                 <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
@@ -195,9 +207,9 @@
                 <div class="col-6 ps-3 text-start">19:00</div>
                 <div class="col-6 fw-bold text-danger text-end">Special request:</div>
                 <div class="col-6 ps-3 text-start mb-2">None</div>
-            </div>    
-        </div>    
-        
+            </div>
+        </div>
+
         <div class="col-4">
             <div class="shadow-lg  rounded-4 row p-3 ">
                 <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
@@ -216,12 +228,12 @@
                 <div class="col-6 ps-3 text-start">19:00</div>
                 <div class="col-6 fw-bold text-danger text-end">Special request:</div>
                 <div class="col-6 ps-3 text-start mb-2">None</div>
-            </div>    
-        </div>    
-        
+            </div>
+        </div>
 
 
-    </div>    
+
+    </div>
 
 
 

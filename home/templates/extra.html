@@ -9,12 +9,11 @@
 
 <div class="py-5 bg-dark hero-header mb-5">
     <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Profile Page </h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center text-uppercase">
                 <li class="breadcrumb-item"><a class="text-danger text-decoration-none" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-danger text-decoration-none" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Profile</li>
             </ol>
         </nav>
     </div>
@@ -22,212 +21,223 @@
 </div>
 <!-- Navbar & Hero End -->
 
+<div class="text-center wow fadeInUp">
+    <h4 class="section-title ff-secondary text-center text-danger fw-normal">User Profile </h4>
+    <div class="row my-3 p-5 pb-3 w-50 m-auto bg_clr text-white rounded-top-5">
+        <div class="col-4 m-auto">
+            <div class="rounded"><img class="w-75 rounded-circle" src="{% static 'img/profile.png'%}" alt=""></div>
+            <div class="h4 fw-bolder mt-2 text-danger">{{request.user.username}}</div>
+        </div>
+        <div class="col-8 text-start">
+            <div class="row  gy-3">
+                <!-- Full Name -->
+                <div class="col-4 text-danger">Name :</div>
+                <div class="col-8">{{request.user.first_name}} {{request.user.last_name}}</div>
 
-        <!-- Menu Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
+                <!-- Username -->
+                <div class="col-4 text-danger">User Name :</div>
+                <div class="col-8">{{request.user}}</div>
 
-                <!-- menu heading -->
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-danger fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">Most Popular Items</h1>
-                </div>
+                <!-- Phone Number -->
+                <div class="col-4 text-danger">Phone Number :</div>
+                {% if request.user.number != NoneType %}
+                <div class="col-8">{{request.user.number}}</div>
+                {% else %}
+                <div class="col-8">--------------</div>
+                {% endif %}
 
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <!-- menu filter -->
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                <i class="fa fa-coffee fa-2x text-danger"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Breakfast</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                                <i class="fa fa-hamburger fa-2x text-danger"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">Launch</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                                <i class="fa fa-utensils fa-2x text-danger"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Lovely</small>
-                                    <h6 class="mt-n1 mb-0">Dinner</h6>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                <!-- email -->
+                <div class="col-4 text-danger">Email Id :</div>
+                <div class="col-8">{{request.user.email}}</div>
+
+                <!-- Address -->
+                <div class="col-4 text-danger">Address :</div>
+                {% if request.user.address != NoneType %}
+                <div class="col-8">{{request.user.address}}</div>
+                {% else %}
+                <div class="col-8">--------------</div>
+                {% endif %}
 
 
-                    <!-- menu items -->
-                    <div class="tab-content">
-
-                        <!-- filter 1 -->
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                {% for a in menu_items %}
-
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0  rounded" src=" /static/{{a.item_image}}" alt="menu_item_image" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>{{a.item_name}}</span>
-                                                <span class="text-danger">₹ {{a.item_price}}</span>
-                                            </h5>
-                                            <div class="d-flex">
-                                            <small class="fst-italic">{{a.item_description}}</small>
-                                            <h6><a href="" class="btn btn-danger mx-2">Order</a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <!-- filter-2 -->
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-
-                                <!-- item-1 -->
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="menu_item_image" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Title</span>
-                                                <span class="text-danger">Price</span>
-                                            </h5>
-                                            <small class="fst-italic">Small description</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            
-                                
-                            </div>
-                        </div>
-
-                        <!-- filter-3 -->
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer-3.1</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="{% static 'img/Kadai-Paneer.jpg'%}" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Kadai Paneer</span>
-                                                <span class="text-danger">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
         </div>
-        <!-- Menu End -->
+        <a class="btn btn-danger mt-4 w-50 m-auto " href="/update_profile/">Update Profile</a>
+    </div>
+
+    <br>
+    <h4 class="section-title ff-secondary text-center text-danger fw-normal">Bookings </h4>
+    <div class=" fw-bold h2">Upcoming Bookings</div>
+
+    <div class="row container m-auto gx-5 gy-4">
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+                <div class="col-6 text-end"><a class=" btn btn-danger" href="/edit_booking/">Update</a></div>
+                <div class="col-6 text-start"><a class=" btn bg_clr text-light" href="">Delete</a></div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+                <div class="col-6 text-end"><a class=" btn btn-danger" href="/edit_booking/">Update</a></div>
+                <div class="col-6 text-start"><a class=" btn bg_clr text-light" href="">Delete</a></div>
+            </div>
+        </div>
 
 
 
 
+
+
+    </div>
+
+    <!-- name       no of persons        mobile         email           date        time        special req-->
+
+
+
+    <div class="mt-4 fw-bold h4">Completed Bookings</div>
+    <div class="row container m-auto gx-5 gy-4">
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="shadow-lg  rounded-4 row p-3 ">
+                <div class="col-12 ff-secondary mb-3 text-center text-danger h3">Thanks for visiting</div>
+                <div><img class="w-75 rounded-4 mb-3" src="{% static 'img/table.png' %}" alt=""></div>
+                <div class="col-6 fw-bold text-danger text-end">Name:</div>
+                <div class="col-6 ps-3 text-start">Deepanshu</div>
+                <div class="col-6 fw-bold text-danger text-end">No of Person:</div>
+                <div class="col-6 ps-3 text-start">6-person</div>
+                <div class="col-6 fw-bold text-danger text-end">Mobile Number:</div>
+                <div class="col-6 ps-3 text-start">+12 3456 7890</div>
+                <div class="col-6 fw-bold text-danger text-end">Email Id:</div>
+                <div class="col-6 ps-3 text-start">abc123@xyz.com</div>
+                <div class="col-6 fw-bold text-danger text-end">Date:</div>
+                <div class="col-6 ps-3 text-start">15-02-2023</div>
+                <div class="col-6 fw-bold text-danger text-end">Time:</div>
+                <div class="col-6 ps-3 text-start">19:00</div>
+                <div class="col-6 fw-bold text-danger text-end">Special request:</div>
+                <div class="col-6 ps-3 text-start mb-2">None</div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
 
 
 {% endblock %}

@@ -488,7 +488,7 @@ h1{
 a{
     text-decoration: none !important;
 }
-small~h6{
+.ps-3>h6{
     color: #000000 !important;
     font-weight: 800;
 }

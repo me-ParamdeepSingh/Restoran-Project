@@ -23,7 +23,9 @@ def contact(request):
     return render(request,'contact.html')
 
 def menu(request):
-    return render(request,'menu.html')
+    queryset = Menu.objects.all()
+    context = {'menu_items': queryset}
+    return render(request,'menu.html', context)
 
 @login_required(login_url='/login/') 
 def booking(request):

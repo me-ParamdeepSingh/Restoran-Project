@@ -76,14 +76,16 @@
 
                                 <div class="col-lg-6">
                                     <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="/media/{{a.item_image}}" alt="" style="width: 80px;">
-                                        <!-- <div >{{forloop.counter}}</div> -->
+                                        <img class="flex-shrink-0  rounded" src=" /static/{{a.item_image}}" alt="menu_item_image" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                 <span>{{a.item_name}}</span>
                                                 <span class="text-danger">₹ {{a.item_price}}</span>
                                             </h5>
+                                            <div class="d-flex">
                                             <small class="fst-italic">{{a.item_description}}</small>
+                                            <h6><a href="" class="btn btn-danger mx-2">Order</a></h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

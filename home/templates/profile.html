@@ -32,7 +32,14 @@
             <div class="row  gy-3">
                 <!-- Full Name -->
                 <div class="col-4 text-danger">Name :</div>
+                {% if request.user.first_name != '' %}
                 <div class="col-8">{{request.user.first_name}} {{request.user.last_name}}</div>
+                {% else %}
+                <div class="col-8">--------------</div>
+                {% endif %}
+
+
+
 
                 <!-- Username -->
                 <div class="col-4 text-danger">User Name :</div>

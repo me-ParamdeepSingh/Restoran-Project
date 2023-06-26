@@ -21,7 +21,7 @@
 .back-to-top {
     position: fixed;
     display: none;
-    left: 45px;
+    right: 45px;
     bottom: 45px;
     z-index: 99;
 }
@@ -488,23 +488,22 @@ h1{
 a{
     text-decoration: none !important;
 }
-small~h6{
+.ps-3>h6{
     color: #000000 !important;
     font-weight: 800;
 }
 
-.book-a-table{
+/* .book-a-table{
     color: #fff;
     position: fixed;
     display: none;
     left: 45px;
     bottom: 45px;
     z-index: -99;
-    /* padding: 0;
-    margin: 0; */
     max-width: 150px;
     width: auto;
-}
+} */
+
 .bg_clr{
     background-color: #0f172b !important;
 }
@@ -519,7 +518,7 @@ small~h6{
 .book-tbl{
     position: fixed;
     display: none;
-    right: 45px;
+    left: 45px;
     bottom: 45px;
     /* z-index: 99; */   
 }

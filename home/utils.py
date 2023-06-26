@@ -17,4 +17,4 @@ def send_email_to_user(user,email):
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
     link = verify_link.objects.create(rnd_no=random_num, user=user)
-    
+   

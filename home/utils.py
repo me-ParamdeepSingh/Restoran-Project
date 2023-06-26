@@ -12,6 +12,6 @@ def send_email_to_user(user,email):
     from_email = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
-    link = verify_link.objects.create(rnd_no=random_num, user=user)
+    link = otp.objects.create(otp_no=random_num, user=user)
     link.save()
     
